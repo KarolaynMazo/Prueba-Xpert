@@ -5,6 +5,7 @@ class Conversacion {
     private $cliente;
     private $asesor;
     private $mensajes;
+    private $listaConversaciones;
    
 
 
@@ -12,6 +13,7 @@ class Conversacion {
         $this->id = $id;
         $this->extraerConversacion();
         $this->mensajes = array();
+        $this->listaConversaciones = array();
 
     }
 
@@ -38,11 +40,19 @@ class Conversacion {
     function setAsesor($asesor){
         $this->asesor =$asesor;
     }
-}
 
-extraerConversacion();
+    function agregarMensaje($linea){
+        array_push($mensajes,$linea);
+    }
 
-function static  extraerConversacion (){
+    function agregarConversacion($conversacion){
+        array_push($listaConversaciones,$conversacion);
+    }
+
+
+
+
+  static function extraerConversacion(){
     
     //lee el archivo solo para lectura      
     $fp = fopen("../conversacion/conversacion.txt","rb");
@@ -53,7 +63,7 @@ function static  extraerConversacion (){
     while (!feof($fp)){
         $linea = fgets($fp);
         $linea = trim($linea);
-        $conversacion -> agregarMensaje($linea)
+        $conversacion -> agregarMensaje($linea);
         echo $linea . "<br>" ;
         //. strlen(trim($linea)),  strlen logitud de la cadena, trim borra las cadenas vacias al principio y al final
 
@@ -66,74 +76,7 @@ function static  extraerConversacion (){
     }
     return $listaConversaciones;
 
-    //conversacion 1
-   // for ($i = 0; $i<6; $i++){
-     //   $mensaje = fgets($fp);//mensaje de cada linea
-        //echo $mensaje;
-       // $saltoDeLinea = nl2br($mensaje); 
-       // echo $saltoDeLinea;
-     //   $arr = array( $i => $mensaje, => $saltoDeLinea);
-       // echo json_encode($arr); 
-   
-   // }
-/*
-    //conversacion 2
-    for ($i = 7; $i<17; $i++){
-        $mensaje = fgets($fp);//mensaje de cada linea
-        $saltoDeLinea = nl2br($mensaje); 
-        echo $saltoDeLinea;
-       // $arr = array( $i => $mensaje, => $saltoDeLinea);
-            echo json_encode($arr); //
-    }
-
-    //conversacion 3 
-
-    for ($i = 18; $i<25; $i++){
-        $mensaje = fgets($fp);//mensaje de cada linea
-        $saltoDeLinea = nl2br($mensaje); 
-        echo $saltoDeLinea;
-       // $arr = array( $i => $mensaje, => $saltoDeLinea);
-         //   echo json_encode($arr); 
-    }
-
-    // conversacion 4 
-    for ($i = 26; $i<30; $i++){
-        $mensaje = fgets($fp);//mensaje de cada linea
-        $saltoDeLinea = nl2br($mensaje); 
-        echo $saltoDeLinea;
-       // $arr = array( $i => $mensaje, => $saltoDeLinea);
-         //   echo json_encode($arr); 
-    }
-*/
-  
-    
-    
-       // }
-
-   // while(!feof($fp)){
-       //$mensaje = fgets($fp);//mensaje de cada linea
-      //  if($mensaje !== "CLIENTE"){
-
-          //  fwrite($c1,$mensaje .PHP_EOL);
-          
-          //  echo $saltoDeLinea;
-       // }
-            
-          
-        
-         // $cadena = file("../conversacion/conversacion.txt");
-         // print_r($cadena);
-        //  fwrite($c1,$cadena .PHP_EOL);
-       //    $listo = $cadena;
-           //     echo $listo;
-             
-           //}    
-
-           
-       
-     
-   
-
     fclose($fp);
   
    }
+}
