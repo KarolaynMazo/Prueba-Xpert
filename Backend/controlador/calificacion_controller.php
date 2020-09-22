@@ -1,13 +1,13 @@
 <?php
-
+require 
 class Calificacion{
     
     static function calificar (){
 
-        if($){ //como recibir archivo desde una ruta, aca iran los condicionales y retorna 
-            conversacion.extraer_conservacion 
-            
-        }
+         //recorrer el arreglo de las conversaciones 
+         $conversaciones = Conversacion:: extraer_conservacion();
+
+        
     }
 
 
