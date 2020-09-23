@@ -36,15 +36,69 @@ var app = {
       fetch('http://localhost/prueba/Backend/servicios/historial_service.php', {
         method: 'GET'
       })
-     // .then(respuesta => respuesta.json())
+      .then(respuesta => respuesta.json())
       .then(response => {
        console.log(response);
-       //console.log(response.resultado);
+      // console.log(response.id);
        //alert(response.mensaje);
+
+       //tabla estrellas 
+      var cuerpo = document.getElementsByTagName("body")[0];
+   
+      // Crea un elemento <table> y un elemento <tbody>
+      var tabla   = document.createElement("table");
+      var tblcuerpo = document.createElement("tbody");
+      var resultado = document.getElementById("resultado"); //id del elemento
+  
+     
+  
+          var fila = document.createElement("tr");
+  
+          for(var j = 0; j <4; j++){
+            
+            var celda = document.createElement("td");
+            var conversacion = document.createTextNode(response[j].id + " = "); 
+            var estrellas = document.createTextNode("Estrellas: " + response[j].estrellas);
+            celda.appendChild(conversacion) + "<br>";
+            fila.appendChild(celda);
+            celda.appendChild(estrellas);
+          }
+          
+          tblcuerpo.appendChild(fila);
+      
+          //posiciono el cuerpo en la tabla 
+          tabla.appendChild(tblcuerpo);
+          cuerpo.appendChild(tabla);
+  
+          tabla.setAttribute("id","tabla");
+          tabla.setAttribute("border",2);
+          tabla.setAttribute("class","centrar")
+          resultado.appendChild(tabla);
+
+
+
+
+
+
+
+
+
     });
+
+    
+    
+  
+  
+  
+  
+
+
+
   })
     
   }
+
+  
 
 }
 

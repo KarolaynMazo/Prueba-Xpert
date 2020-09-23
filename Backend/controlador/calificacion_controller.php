@@ -28,10 +28,6 @@ if($contadorPalabras <= 2){
 }else{
   $conversacion->sumarPuntaje(-10);
 }
-
-
-
-
 //--------Lista de palabras que exclaman un buen servicio
       $terminarCalificar = false;
       foreach($conversacion->obtenerMensajes() as $posicion => $palabra){
@@ -72,7 +68,7 @@ if($contadorPalabras <= 2){
 
    $array = array();
   foreach($Listaconversaciones as $posicion =>$conversacion){
-    $arr = array('id' => $conversacion->getId(), 'puntaje' => $conversacion->getPuntaje(),'estrellas' => $conversacion->getEstrellas() );
+    $arr = array('id' => $conversacion->getId(), 'puntaje' => $conversacion->getPuntaje(),'estrellas' => $conversacion->getEstrellas());
     array_push($array,$arr);
   }
   echo json_encode($array); 
