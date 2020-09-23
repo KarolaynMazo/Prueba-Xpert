@@ -32,7 +32,18 @@ var app = {
         }
     
     });
-
+    btnCalificar.addEventListener("click", () => {
+      fetch('http://localhost/prueba/Backend/servicios/historial_service.php', {
+        method: 'GET'
+      })
+     // .then(respuesta => respuesta.json())
+      .then(response => {
+       console.log(response);
+       //console.log(response.resultado);
+       //alert(response.mensaje);
+    });
+  })
+    
   }
 
 }

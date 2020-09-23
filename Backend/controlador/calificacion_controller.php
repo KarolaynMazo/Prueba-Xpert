@@ -20,6 +20,18 @@ class Calificacion{
       else{
         $conversacion->sumarPuntaje(10);
       }
+//---Numero de coincidencias de la palabra urgente
+$stringMensajes = implode($conversacion->obtenerMensajes());
+$contadorPalabras = substr_count($stringMensajes,"URGENTE");
+if($contadorPalabras <= 2){
+  $conversacion->sumarPuntaje(-5);
+}else{
+  $conversacion->sumarPuntaje(-10);
+}
+
+
+
+
 //--------Lista de palabras que exclaman un buen servicio
       $terminarCalificar = false;
       foreach($conversacion->obtenerMensajes() as $posicion => $palabra){
@@ -47,7 +59,7 @@ class Calificacion{
       if($resultadomin > 0){
         $resultado = $resultado + $resultadomin * 60;
       }
-      echo $resultado . "<br>";
+     // echo $resultado . "<br>";
       if($resultado <= 60){
         $conversacion->sumarPuntaje(50);
       }else{
@@ -57,9 +69,17 @@ class Calificacion{
       //var_dump($conversacion);
       calcularEstrellas($conversacion);
     }
+
+   $array = array();
+  foreach($Listaconversaciones as $posicion =>$conversacion){
+    $arr = array('id' => $conversacion->getId(), 'puntaje' => $conversacion->getPuntaje(),'estrellas' => $conversacion->getEstrellas() );
+    array_push($array,$arr);
   }
- 
+  echo json_encode($array); 
+  exit;
+  }
 }
+
 function calcularEstrellas($conversacion){
  $puntaje = $conversacion->getPuntaje();
   if($puntaje < 0){
@@ -88,17 +108,10 @@ function calcularEstrellas($conversacion){
           }
       }
   } 
-  var_dump($conversacion);
-  $array = array();
-  foreach($Listaconversaciones as $posicion =>$conversacion){
-    $arr = array('id' => $conversacion->getId(), 'puntaje' => "subido con exito",'estrellas' => );
-    array_push($array,$arr);
-  }
-  echo json_encode($array); 
   
+
 }
 
 
-$nueva = new Calificacion();
-$nueva->calificar();
+
 

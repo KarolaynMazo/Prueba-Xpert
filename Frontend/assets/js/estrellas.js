@@ -1,3 +1,7 @@
+
+
+
+
 function mostrar_tabla(){
    
     var cuerpo = document.getElementsByTagName("body")[0];
